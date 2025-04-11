@@ -47,3 +47,5 @@ grep -qxF "$LINE2" ~/.bashrc || echo "$LINE2" >> ~/.bashrc
 
 # Source the .bashrc to apply changes
 source ~/.bashrc
+
+mv dwnldr $HOME
