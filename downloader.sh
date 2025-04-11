@@ -8,19 +8,16 @@ echo "[+] Updating packages..."
 apt update -y && apt upgrade -y
 
 # Install Python
-echo "[+] Installing Python..."
-apt install -y python
+if ! command -v python &> /dev/null; then
+    echo "[+] Installing Python..."
+    apt install -y python
+fi
 
 # Install pip if not already installed
 if ! command -v pip &> /dev/null; then
-    echo "[+] Installing pip..."
-    apt install -y python-pip
+    echo "[+] Installing Python dependencies..."
+    pip install -r requirements.txt
 fi
-
-# Install required packages from requirements.txt
-echo "[+] Installing Python dependencies..."
-pip install -r requirements.txt
-
 # Run the Python server
 echo "[+] Starting server..."
 python server.py &
