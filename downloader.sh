@@ -24,8 +24,7 @@ python server.py &
 PID=$!
 # Wait a bit for server to start
 sleep 1
-read -p "Press ENTER to stop the server..."
-kill $PID
+
 # Open mobile browser
 echo "[+] Wait it will redirect to your browser..."
 echo "[+] Opening browser at http://0.0.0.0:5000"
