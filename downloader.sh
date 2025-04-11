@@ -39,7 +39,7 @@ kill $PID
 
 # Define the lines to add
 LINE1='export PATH=$HOME:$PATH'
-LINE2='export PATH=$PATH:/data/data/com.termux/files/home'
+LINE2='export PATH=$PATH:/data/data/com.termux/files/home/Video-Downloader'
 
 # Check and append the lines if they are not already present
 grep -qxF "$LINE1" ~/.bashrc || echo "$LINE1" >> ~/.bashrc
