@@ -14,6 +14,8 @@ $$  \ /$$/ $$ |/$$$$$$$ |/$$$$$$  |/$$$$$$  |      $$ |  $$ |/$$$$$$  |$$ | $$ |
 Created by Bismoy Ghosh"""
 
 print(banner)
+print(" Copy and paste yo your browser http://0.0.0.0:5000")
+
 
 from flask import Flask, request, render_template, send_file
 import yt_dlp
