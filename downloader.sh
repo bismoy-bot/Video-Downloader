@@ -32,5 +32,6 @@ echo "[+] Or Open browser at http://0.0.0.0:5000"
 xdg-open http://0.0.0.0:5000
 
 
-
-
+echo "Press Enter to stop the server....."
+read -p ""
+kill $(ps aux | grep '[p]ython -m http.server 5000' | awk '{print $2}')
