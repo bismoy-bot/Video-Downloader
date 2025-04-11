@@ -21,10 +21,17 @@ fi
 # Run the Python server
 echo "[+] Starting server..."
 python server.py &
-
+PID=$!
 # Wait a bit for server to start
-sleep 3
+sleep 1
 
 # Open mobile browser
+echo "[+] Wait it will redirect to your browser..."
 echo "[+] Opening browser at http://0.0.0.0:5000"
+echo "[+] Or Open browser at http://0.0.0.0:5000"
 xdg-open http://0.0.0.0:5000
+
+
+
+read -p "Press ENTER to stop the server..."
+kill $PID
