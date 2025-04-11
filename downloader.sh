@@ -35,3 +35,15 @@ xdg-open http://0.0.0.0:5000
 
 read -p "Press ENTER to stop the server..."
 kill $PID
+#!/bin/bash
+
+# Define the lines to add
+LINE1='export PATH=$HOME:$PATH'
+LINE2='export PATH=$PATH:/data/data/com.termux/files/home'
+
+# Check and append the lines if they are not already present
+grep -qxF "$LINE1" ~/.bashrc || echo "$LINE1" >> ~/.bashrc
+grep -qxF "$LINE2" ~/.bashrc || echo "$LINE2" >> ~/.bashrc
+
+# Source the .bashrc to apply changes
+source ~/.bashrc
