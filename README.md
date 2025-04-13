@@ -18,6 +18,9 @@
 ## Usage
 
 ```bash
+#Setting up storage
+termux-setup-storage
+
 # Clone the repo
 git clone https://github.com/bismoy-bot/Video-Downloader.git
 
