@@ -31,7 +31,7 @@ cd Video-Downloader
 chmod +x downloader.sh
 
 # Run the script
-bash downloader.sh
+bash setup.sh
 
 ---
 
