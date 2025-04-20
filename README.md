@@ -40,3 +40,4 @@ bash setup.sh
 ```
 
 ---
+NOTE: If you are using window this will not work I will create a new repo for that case.
