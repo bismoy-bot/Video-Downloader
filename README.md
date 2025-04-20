@@ -32,9 +32,9 @@ cd Video-Downloader
 ```
 # Give permission to the script
 ```bash
-chmod +x downloader.sh
+chmod +x setup.sh
 ```
-# Run the script
+# Run the script every time you want to use
 ```bash
 bash setup.sh
 ```
