@@ -39,6 +39,7 @@ chmod +x setup.sh
 bash setup.sh
 ```
 ---
+#After downloading press Enter to stop the server
 
 **Crafted with love for CLI lovers.**  
 *Hack the terminal, download the internet.*
