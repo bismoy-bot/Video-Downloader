@@ -9,7 +9,7 @@ unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)
         echo "[+] Linux detected. Running 'l'..."
-        chmod +x ./l && ./l
+        chmod +x ./linux.sh && ./linux.sh
         ;;
     Darwin*)
         echo "[+] macOS detected. Running 'Mac.sh'..."
