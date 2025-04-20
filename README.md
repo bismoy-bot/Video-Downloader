@@ -46,7 +46,10 @@ bash setup.sh
 
 ---
 NOTE: If you are using window this will not work I will create a new repo for that case.
+
 Or, you can install WSL in your window by 
 ```ps1
 wsl --install
 ```
+
+And then you can use your window like linux.
