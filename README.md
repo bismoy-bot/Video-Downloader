@@ -16,28 +16,37 @@
 ---
 
 ## Usage
+#Setting up storage
 
 ```bash
-#Setting up storage
 termux-setup-storage
-
+```
 # Clone the repo
+
+```bash
 git clone https://github.com/bismoy-bot/Video-Downloader.git
-
+```
 # Enter the folder
+```bash
 cd Video-Downloader
-
+```
 # Give permission to the script
+```bash
 chmod +x downloader.sh
-
+```
 # Run the script
+```bash
 bash setup.sh
-
+```
 ---
 
 **Crafted with love for CLI lovers.**  
 *Hack the terminal, download the internet.*
-```
+
 
 ---
 NOTE: If you are using window this will not work I will create a new repo for that case.
+Or, you can install WSL in your window by 
+```ps1
+wsl --install
+```
