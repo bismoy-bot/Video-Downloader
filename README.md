@@ -21,6 +21,8 @@
 ```bash
 termux-setup-storage
 ```
+# In termux.
+
 # Clone the repo
 
 ```bash
@@ -32,11 +34,11 @@ cd Video-Downloader
 ```
 # Give permission to the script
 ```bash
-chmod +x setup.sh
+chmod +x linux.sh
 ```
 # Run the script every time you want to use
 ```bash
-bash setup.sh
+bash linux.sh
 ```
 ---
 #After downloading press Enter to stop the server
