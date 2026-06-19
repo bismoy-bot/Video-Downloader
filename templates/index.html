@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeonStream - Ultimate Downloader</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0d0b14;
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff0055;
+            --neon-purple: #9d4edd;
+            --glass-bg: rgba(20, 16, 35, 0.65);
+            --border-glow: rgba(0, 240, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(157, 78, 221, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(0, 240, 255, 0.12) 0px, transparent 50%);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .main-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 40px 35px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), 
+                        0 0 30px rgba(157, 78, 221, 0.05);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .main-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.6), 
+                        0 0 35px rgba(0, 240, 255, 0.1);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .form-label {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #b0aab9;
+            text-align: left;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Input Group Neon Styling */
+        .input-group-custom {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group-custom i.input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-cyan);
+            font-size: 1.1rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"], select {
+            background: rgba(10, 7, 18, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            padding: 14px 15px 14px 45px !important;
+            border-radius: 12px !important;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3) !important;
+            border-color: var(--neon-cyan) !important;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+        }
+
+        /* Neon Action Button */
+        .btn-neon {
+            background: linear-gradient(45deg, #00b4d8, #7209b7);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3);
+        }
+
+        .btn-neon:hover {
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .btn-neon:active {
+            transform: translateY(1px);
+        }
+
+        /* Dynamic Loading Screen Overlay */
+        .loader-container {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px dashed rgba(0, 240, 255, 0.2);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; box-shadow: 0 0 10px rgba(0, 240, 255, 0.05); }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(0, 240, 255, 0.15); }
+            100% { opacity: 0.6; box-shadow: 0 0 10px rgba(0, 240, 255, 0.05); }
+        }
+
+        .spinner-neon {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+            margin-bottom: 10px;
+        }
+
+        .status-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+        }
+
+        .status-subtext {
+            font-size: 0.85rem;
+            color: #8a8296;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <h2><i class="fa-solid fa-bolt-lightning me-2"></i>NeonStream</h2>
+        
+        <form method="POST" id="downloadForm">
+            <div class="text-start">
+                <label class="form-label">Media Link</label>
+            </div>
+            <div class="input-group-custom">
+                <i class="fas fa-link input-icon" id="urlIcon"></i>
+                <input type="text" name="url" id="videoUrl" placeholder="Paste YouTube link here..." required autocomplete="off">
+            </div>
+
+            <div class="text-start">
+                <label class="form-label">Output Target</label>
+            </div>
+            <div class="input-group-custom">
+                <i class="fas fa-sliders input-icon"></i>
+                <select name="format" id="formatSelect">
+                    <option value="mp3">MP3 — High Quality Audio (192kbps)</option>
+                    <option value="144">MP4 — 144p Ultra Low</option>
+                    <option value="360">MP4 — 360p Standard</option>
+                    <option value="720" selected>MP4 — 720p HD</option>
+                    <option value="1080">MP4 — 1080p Full HD</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-neon" id="submitBtn">
+                <i class="fas fa-cloud-arrow-down me-2"></i>Initialize Download
+            </button>
+        </form>
+
+        <div class="loader-container" id="loader">
+            <div class="spinner-neon">
+                <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+            </div>
+            <div class="status-text">PROCESSING CONVERSION...</div>
+            <div class="status-subtext">Fetching streams, compiling buffers, and packaging file. Please keep this tab active.</div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('downloadForm');
+        const loader = document.getElementById('loader');
+        const submitBtn = document.getElementById('submitBtn');
+        const videoUrl = document.getElementById('videoUrl');
+        const urlIcon = document.getElementById('urlIcon');
+
+        // Dynamic State 1: Displaying Loader and tracking processing state
+        form.addEventListener('submit', function() {
+            // Drop down the processing engine elements
+            loader.style.display = 'block';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.4';
+            submitBtn.innerHTML = `<i class="fas fa-sync fa-spin me-2"></i>Engine Busy...`;
+
+            // Standard timeout check to reset interface loop safely if a file serves natively
+            setTimeout(() => {
+                // If a download delivery triggers, the native document isn't destroyed.
+                // We soft-reset the state after 15 seconds to let them run another request easily.
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.innerHTML = `<i class="fas fa-cloud-arrow-down me-2"></i>Initialize Download`;
+                loader.style.display = 'none';
+            }, 15000);
+        });
+
+        // Dynamic State 2: URL contextual check to switch icons conditionally
+        videoUrl.addEventListener('input', function() {
+            const value = videoUrl.value.trim();
+            if (value.includes('youtube.com/') || value.includes('youtu.be/')) {
+                urlIcon.className = 'fab fa-youtube input-icon';
+                urlIcon.style.color = '#ff0055'; // Glow red for youtube matches
+                urlIcon.style.textShadow = '0 0 8px #ff0055';
+            } else if (value.length > 0) {
+                urlIcon.className = 'fas fa-link input-icon';
+                urlIcon.style.color = '#00f0ff'; // Cyan default
+                urlIcon.style.textShadow = '0 0 8px #00f0ff';
+            } else {
+                urlIcon.className = 'fas fa-link input-icon';
+                urlIcon.style.color = '#00f0ff';
+                urlIcon.style.textShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
